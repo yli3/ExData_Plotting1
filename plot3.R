@@ -1,3 +1,12 @@
+## plot3.R
+#
+# This file contains functions used to produce the plot specified for
+# Plot 3 of Course Project 1 in Coursera EXDATA-031.
+# Usage: source, and call plot3()
+# Output: plot3.png
+
+# readData
+#
 # Reads data.txt and returns data from February 1 and 2, 2007
 # as a data.table for use by other functions.
 #
@@ -12,8 +21,8 @@ readData <- function() {
   
   # Read data.
   dt <- fread("data.txt",
-              colClasses="character",
-              na.strings="?"
+    colClasses="character",
+    na.strings="?"
   )
   
   # Subset for dates of interest.
@@ -22,7 +31,8 @@ readData <- function() {
   return(dt[Date %in% validDates])
 }
 
-
+# plot3
+#
 # Line plot of energy sub metering vs datetime using data from data.txt over 
 # the course of two days (February 1-2, 2007), and saves output as PNG.
 #
@@ -73,7 +83,6 @@ plot3 <- function() {
     lty = c(1, 1, 1)
   )
 
-  
   # Close graphics device.
   invisible(dev.off())
 }

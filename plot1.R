@@ -1,3 +1,12 @@
+## plot1.R
+#
+# This file contains functions used to produce the plot specified for
+# Plot 1 of Course Project 1 in Coursera EXDATA-031.
+# Usage: source, and call plot1()
+# Output: plot1.png
+
+# readData
+#
 # Reads data.txt and returns data from February 1 and 2, 2007
 # as a data.table for use by other functions.
 #
@@ -22,7 +31,8 @@ readData <- function() {
   return(dt[Date %in% validDates])
 }
 
-
+# plot1
+#
 # Histogram plot of Global Active Power using data from data.txt
 # over the course of two days (February 1-2, 2007), and 
 # saves output as PNG.
@@ -33,7 +43,6 @@ readData <- function() {
 #   dev.off(): number and name of new active graphics device
 # Output:
 #   plot1.png: a 480x480 PNG.
-
 
 plot1 <- function() {
   # Get data.
@@ -47,7 +56,6 @@ plot1 <- function() {
     main = "Global Active Power",
     xlab = "Global Active Power (kilowatts)",
     ylab = "Frequency",
-    ylim = c(0, 1200),
     col = "red"
   )
   

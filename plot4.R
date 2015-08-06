@@ -1,3 +1,12 @@
+## plot4.R
+#
+# This file contains functions used to produce the plots specified for
+# Plot 4 of Course Project 1 in Coursera EXDATA-031.
+# Usage: source, and call plot4()
+# Output: plot4.png
+
+# readData
+#
 # Reads data.txt and returns data from February 1 and 2, 2007
 # as a data.table for use by other functions.
 #
@@ -12,8 +21,8 @@ readData <- function() {
   
   # Read data.
   dt <- fread("data.txt",
-              colClasses="character",
-              na.strings="?"
+    colClasses="character",
+    na.strings="?"
   )
   
   # Subset for dates of interest.
@@ -22,7 +31,8 @@ readData <- function() {
   return(dt[Date %in% validDates])
 }
 
-
+# plot4
+#
 # Plots a series of 4 line plots in 2x2 format using data from data.txt over the
 # course of two days (February 1-2, 2007), and saves the output as PNG.
 #
@@ -37,7 +47,7 @@ readData <- function() {
 # Return:
 #   dev.off(): number and name of new active graphics device
 # Output:
-#   plot3.png: a 480x480 PNG file.
+#   plot4.png: a 480x480 PNG file.
 
 plot4 <- function() {
   # Get data.
@@ -98,7 +108,6 @@ plot4 <- function() {
        ylab = "Global_reactive_power"
   )
  
-  
   # Close graphics device.
   invisible(dev.off())
 }
