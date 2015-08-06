@@ -54,8 +54,7 @@ plot3 <- function() {
   png("plot3.png", width = 480, height = 480)
   
   # Get vector of POSIXct datetimes from data.
-  datetime <- as.POSIXct(paste(dt$Date, dt$Time),
-                           format = "%d/%m/%Y %H:%M:%S")
+  datetime <- as.POSIXct(paste(dt$Date, dt$Time), format = "%d/%m/%Y %H:%M:%S")
   
   # Plot Sub_metering_1.
   plot(datetime, as.numeric(dt$Sub_metering_1),

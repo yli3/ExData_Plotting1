@@ -52,9 +52,8 @@ plot2 <- function() {
   png("plot2.png", width = 480, height = 480)
   
   # Get vector of POSIXct datetimes from data.
-  datetime <- as.POSIXct(paste(dt$Date, dt$Time),
-    format = "%d/%m/%Y %H:%M:%S")
-                           
+  datetime <- as.POSIXct(paste(dt$Date, dt$Time), format = "%d/%m/%Y %H:%M:%S")
+  
   # Produce plot.
   plot(datetime, as.numeric(dt$Global_active_power),
     type = "l",

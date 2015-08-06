@@ -52,13 +52,12 @@ readData <- function() {
 plot4 <- function() {
   # Get data.
   dt <- readData()
-  
+
   # Open graphics device.
   png("plot4.png", width = 480, height = 480)
   
   # Get vector of POSIXct datetimes from data.
-  datetime <- as.POSIXct(paste(dt$Date, dt$Time),
-                           format = "%d/%m/%Y %H:%M:%S")
+  datetime <- as.POSIXct(paste(dt$Date, dt$Time), format = "%d/%m/%Y %H:%M:%S")
   
   # 2x2 base plots, to be defined by column.
   par(mfrow = c(2, 2))
@@ -77,35 +76,33 @@ plot4 <- function() {
   )
   
   # Plot[2,1]: {Sub_metering_1, _2, and _3} ~ datetime.
-  
   plot(datetime, as.numeric(dt$Sub_metering_1),
-       type = "l",
-       xlab = "",
-       ylab = "Energy sub metering"
-  ) # Sub_metering_1.
+    type = "l",
+    xlab = "",
+    ylab = "Energy sub metering"
+  ) 
   
   points(datetime, as.numeric(dt$Sub_metering_2),
-         type = "l",
-         col = "red"
-  ) # Sub_metering_2.
+    type = "l",
+    col = "red"
+  ) 
   
   points(datetime, as.numeric(dt$Sub_metering_3),
-         type = "l",
-         col = "blue"
-  ) # Sub_metering_3.
-  
+    type = "l",
+    col = "blue"
+  )
   
   legend("topright", 
-         c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
-         col = c("black", "red", "blue"),
-         lty = c(1, 1, 1),
-         bty = "n"
-  ) # Sub_metering plot legend.
+    c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+    col = c("black", "red", "blue"),
+    lty = c(1, 1, 1),
+    bty = "n"
+  )
   
   # Plot[2,2]: Global_reactive_power ~ datetime.
   plot(datetime, as.numeric(dt$Global_reactive_power),
-       type = "l",
-       ylab = "Global_reactive_power"
+    type = "l",
+    ylab = "Global_reactive_power"
   )
  
   # Close graphics device.
