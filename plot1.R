@@ -2,13 +2,17 @@
 #
 # This file contains functions used to produce the plot specified for
 # Plot 1 of Course Project 1 in Coursera EXDATA-031.
+#
+# It uses a household_power_consumption.txt comma-separated data file that is
+# acquired from online if it does not currently exist in the directory.
+#
 # Usage: source, and call plot1()
 # Output: plot1.png
 
 # readData
 #
-# Reads data.txt and returns data from February 1 and 2, 2007
-# as a data.table for use by other functions.
+# Acquires data file if needed, and reads data as a data.table, returning
+# rows from February 1 and 2, 2007.
 #
 # Args:
 #   None.
@@ -19,8 +23,16 @@ readData <- function() {
   # Load libraries required.
   library("data.table")
   
+  # download file if not present
+  if(!file.exists('./household_power_consumption.txt')) {
+    fileUrl <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+    download.file(fileUrl, "./household_power_consumption.zip", mode = "wb")
+    unzip("./household_power_consumption.zip")
+  }
+    
+  
   # Read data.
-  dt <- fread("data.txt",
+  dt <- fread("household_power_consumption.txt",
     colClasses="character",
     na.strings="?"
   )
@@ -33,7 +45,7 @@ readData <- function() {
 
 # plot1
 #
-# Histogram plot of Global Active Power using data from data.txt
+# Histogram plot of Global Active Power using data from file
 # over the course of two days (February 1-2, 2007), and 
 # saves output as PNG.
 #
