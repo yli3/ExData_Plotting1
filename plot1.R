@@ -14,6 +14,11 @@
 # Acquires data file if needed, and reads data as a data.table, returning
 # rows from February 1 and 2, 2007.
 #
+# Notes: 
+#   Although fread is very fast on the entire data file, this function now
+#   skips rows while reading in the data frame to demonstrate it is possible.
+#   To see its original state, please refer to previous commits, for example
+#   SHA-1: 2064f1679525e2f32b45d184da109f49182ba16f.
 # Args:
 #   None.
 # Return:
@@ -29,24 +34,34 @@ readData <- function() {
     download.file(fileUrl, "./household_power_consumption.zip", mode = "wb")
     unzip("./household_power_consumption.zip")
   }
-    
   
-  # Read data.
+  # Read data, skipping to desired rows.
   dt <- fread("household_power_consumption.txt",
-    colClasses="character",
-    na.strings="?"
+    colClasses = "character",
+    na.strings = "?",
+    header = TRUE,
+    skip = (6 * 60) + (36) + (46 * 60 * 24),
+    nrow = (2 * 60 * 24)
   )
   
-  # Subset for dates of interest.
-  validDates <- c("1/2/2007", "2/2/2007")
+  setnames(dt, c(
+    "Date",
+    "Time",
+    "Global_active_power",
+    "Global_reactive_power",
+    "Voltage",
+    "Global_intensity",
+    "Sub_metering_1",
+    "Sub_metering_2",
+    "Sub_metering_3")
+  )
   
-  return(dt[Date %in% validDates])
+  return(dt)
 }
 
 # plot1
 #
-# Histogram plot of Global Active Power using data from file
-# over the course of two days (February 1-2, 2007), and 
+# Histogram plot of Global Active Power using data obtained by readData(), and 
 # saves output as PNG.
 #
 # Args:
